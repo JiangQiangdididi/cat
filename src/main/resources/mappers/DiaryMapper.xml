@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cat.dao.DiaryMapper" >
+    <resultMap id="BaseResultMap" type="com.cat.pojo.Diary" >
+        <constructor >
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="cat" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="man" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="time" jdbcType="DATE" javaType="java.util.Date" />
+            <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="introduct" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, cat, man, time, title, introduct, content
+  </sql>
+
+    <select id="selectDiary" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from miao_diary
+    </select>
+
+    <select id="selectDiaryById" parameterType="int" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from miao_diary
+        where id = #{id}
+    </select>
+</mapper>

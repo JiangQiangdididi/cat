@@ -2,6 +2,8 @@ package com.cat.dao;
 
 import com.cat.pojo.DiaryPic;
 
+import java.util.List;
+
 public interface DiaryPicMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface DiaryPicMapper {
     int updateByPrimaryKeySelective(DiaryPic record);
 
     int updateByPrimaryKey(DiaryPic record);
+
+    List<String> selectPicById(Integer diaryId);
 }

@@ -4,13 +4,16 @@ import com.cat.common.Const;
 import com.cat.common.ResponseCode;
 import com.cat.common.ServerResponse;
 import com.cat.dao.CatMapper;
+import com.cat.dao.DiaryMapper;
 import com.cat.pojo.Cat;
+import com.cat.pojo.Diary;
 import com.cat.service.IMainService;
 import com.cat.vo.CatListVo;
 import com.cat.vo.CatVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,36 +32,20 @@ public class MainServiceImpl implements IMainService {
     @Autowired
     private CatMapper catMapper;
 
-    // 获取帖子信息
-    public ServerResponse<CatVo> getCatVo(Integer id, Integer status){
-        if (id == null) {
-            ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
-        }
-        Cat cat = catMapper.selectByIdAndStatus(id, status);
-        if (cat == null) {
-            ServerResponse.createByErrorMessage("此猫不存在");
-        }
+    @Autowired
+    private DiaryMapper diaryMapper;
 
-        // 组装catVo
-        CatVo catVo = assembleCatVo(cat);
-        return ServerResponse.createBySuccess(catVo);
-    }
+    // 获取帖子详情信息
+    public ServerResponse<Diary> getDiaryDetial(Integer id){
 
-    private CatVo assembleCatVo(Cat cat){
-        CatVo catVo = new CatVo();
-        catVo.setName(cat.getName());
-        catVo.setCatPic(cat.getPic());
-        catVo.setGender(cat.getGender());
-        catVo.setBrith(cat.getBirth());
-        if(cat.getHealthy() == Const.Healthy.HEALTHY.getCode()){
-            catVo.setHealthyStatus(Const.Healthy.HEALTHY.getCode());
-    }
-        if(cat.getHealthy() == Const.Healthy.UNHEALTHY.getCode()){
-            catVo.setHealthyStatus(Const.Healthy.UNHEALTHY.getCode());
+        Diary diary = diaryMapper.selectDiaryById(id);
+        if (diary == null) {
+            ServerResponse.createByErrorMessage("此帖子不存在");
         }
 
-        return catVo;
+        return ServerResponse.createBySuccess(diary);
     }
+
 
     private CatListVo assembleCatListVo(Cat cat){
         CatListVo catVoList = new CatListVo();
@@ -66,19 +53,15 @@ public class MainServiceImpl implements IMainService {
         catVoList.setCatPic(cat.getPic());
         catVoList.setGender(cat.getGender());
         catVoList.setBrith(cat.getBirth());
-        if(cat.getHealthy() == Const.Healthy.HEALTHY.getCode()){
-            catVoList.setHealthyStatus(Const.Healthy.HEALTHY.getCode());
-        }
-        if(cat.getHealthy() == Const.Healthy.UNHEALTHY.getCode()){
-            catVoList.setHealthyStatus(Const.Healthy.UNHEALTHY.getCode());
-        }
+        catVoList.setHealthyStatus(cat.getHealthy());
 
         return catVoList;
     }
 
-    public ServerResponse<PageInfo> getCatList(Integer gender,Integer status, int pageNum, int pageSize){
+    // 获取帖子列表
+    public ServerResponse<PageInfo> getCatList(int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
-        List<Cat> catList = catMapper.getCatList(gender, status);
+        List<Cat> catList = catMapper.getCatList();
 
         List<CatListVo> catListVoList = Lists.newArrayList();
 

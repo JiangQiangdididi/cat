@@ -132,4 +132,11 @@
     from miao_note
     where id = #{userId}
   </select>
+
+  <select id="selectNoteByManId" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from miao_note
+    where man = #{manId}
+  </select>
 </mapper>

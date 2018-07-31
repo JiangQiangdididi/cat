@@ -3,6 +3,8 @@ package com.cat.dao;
 import com.cat.pojo.Note;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface NoteMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -19,4 +21,7 @@ public interface NoteMapper {
     int updateByPrimaryKey(Note record);
 
     Note selectByIdAndUserName(@Param("userId") Integer userId, @Param("username") String username);
+
+    List<Note> selectNoteByManId(@Param("manId") Integer manId);
+
 }

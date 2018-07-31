@@ -70,4 +70,10 @@
       pic_id = #{picId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectPicById" resultType="list" parameterType="int">
+    select pic_id
+    from miao_diary_pic
+    where diary_id = #{diaryId}
+  </select>
 </mapper>

@@ -18,7 +18,9 @@ public interface CatMapper {
 
     int updateByPrimaryKey(Cat record);
 
-    Cat selectByIdAndStatus(@Param("id")Integer id, @Param("status") Integer status);
+    Cat selectById(Integer id);
 
-    List<Cat> getCatList(@Param("gender")Integer gender, @Param("status")Integer status);
+    List<Cat> getCatList();
+
+    List<Cat> getCatListById(@Param("manId") Integer manId);
 }

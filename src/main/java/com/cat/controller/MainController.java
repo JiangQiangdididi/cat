@@ -1,6 +1,7 @@
 package com.cat.controller;
 
 import com.cat.common.ServerResponse;
+import com.cat.pojo.Diary;
 import com.cat.service.IMainService;
 import com.cat.vo.CatVo;
 import com.github.pagehelper.PageInfo;
@@ -24,17 +25,18 @@ public class MainController {
     private IMainService iMainService;
 
 
-    @RequestMapping("catNote.do")
+    @RequestMapping("diary.do")
     @ResponseBody
-    public ServerResponse<CatVo> getCatVo(Integer id, Integer status){
-        return iMainService.getCatVo(id, status);
+    public ServerResponse<Diary> getDiaryDetial(Integer id){
+        return iMainService.getDiaryDetial(id);
     }
 
+    // 获取帖子列表
     @RequestMapping("catList.do")
     @ResponseBody
-    public ServerResponse<PageInfo> catList(Integer gender, Integer status, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+    public ServerResponse<PageInfo> catList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                             @RequestParam(value = "pageNum", defaultValue = "10") int pageSize){
 
-        return iMainService.getCatList(gender,status, pageNum, pageSize);
+        return iMainService.getCatList(pageNum, pageSize);
     }
 }

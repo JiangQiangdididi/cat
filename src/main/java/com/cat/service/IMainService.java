@@ -1,6 +1,7 @@
 package com.cat.service;
 
 import com.cat.common.ServerResponse;
+import com.cat.pojo.Diary;
 import com.cat.vo.CatVo;
 import com.github.pagehelper.PageInfo;
 
@@ -12,7 +13,7 @@ import com.github.pagehelper.PageInfo;
  **/
 public interface IMainService {
 
-    ServerResponse<CatVo> getCatVo(Integer id, Integer status);
+    ServerResponse<Diary> getDiaryDetial(Integer id);
 
-    ServerResponse<PageInfo> getCatList(Integer gender,Integer status, int pageNum, int pageSize);
+    ServerResponse<PageInfo> getCatList(int pageNum, int pageSize);
 }

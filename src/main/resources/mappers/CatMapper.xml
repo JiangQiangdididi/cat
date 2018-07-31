@@ -163,31 +163,23 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByIdAndStatus" resultMap="BaseResultMap" parameterType="map">
+  <select id="selectById" resultMap="BaseResultMap" parameterType="int">
     select
     <include refid="Base_Column_List"/>
     from miao_cat
-    <where>
-      <if test="id != null">
-        and id = #{id}
-      </if>
-      <if test="status != null">
-        and healthy = #{status}
-      </if>
-    </where>
+    where id = #{id}
   </select>
 
   <select id="getCatList" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from miao_cat
-    <where>
-      <if test="gender != null">
-        and gender = #{gender}
-      </if>
-      <if test="status != null">
-        and healthy = #{status}
-      </if>
-    </where>
+  </select>
+
+  <select id="getCatListById" resultMap="BaseResultMap" parameterType="int">
+    select
+    <include refid="Base_Column_List"/>
+    from miao_cat
+    where man = #{manId}
   </select>
 </mapper>

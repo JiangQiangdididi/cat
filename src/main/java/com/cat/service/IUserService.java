@@ -1,6 +1,7 @@
 package com.cat.service;
 
 import com.cat.common.ServerResponse;
+import com.github.pagehelper.PageInfo;
 
 /**
  * @Author: LR
@@ -11,4 +12,10 @@ import com.cat.common.ServerResponse;
 public interface IUserService {
 
     ServerResponse login(String username, String password);
+
+    ServerResponse getListByManId(Integer manId, int pageNum, int pageSize);
+
+    ServerResponse<PageInfo> getCatList(Integer manId, int pageNum, int pageSize);
+
+    ServerResponse<PageInfo> getCatNote(Integer manId, int pageNum, int pageSize);
 }

@@ -1,8 +1,7 @@
 package com.cat.service;
 
 import com.cat.common.ServerResponse;
-import com.cat.pojo.Diary;
-import com.cat.vo.CatVo;
+import com.cat.entity.Diary;
 import com.github.pagehelper.PageInfo;
 
 /**

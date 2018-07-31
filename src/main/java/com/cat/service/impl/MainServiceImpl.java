@@ -1,19 +1,15 @@
 package com.cat.service.impl;
 
-import com.cat.common.Const;
-import com.cat.common.ResponseCode;
 import com.cat.common.ServerResponse;
 import com.cat.dao.CatMapper;
 import com.cat.dao.DiaryMapper;
-import com.cat.pojo.Cat;
-import com.cat.pojo.Diary;
+import com.cat.entity.Cat;
+import com.cat.entity.Diary;
 import com.cat.service.IMainService;
 import com.cat.vo.CatListVo;
-import com.cat.vo.CatVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.cat.dao;
 
-import com.cat.pojo.Cat;
+import com.cat.entity.Cat;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

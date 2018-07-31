@@ -1,6 +1,6 @@
 package com.cat.dao;
 
-import com.cat.pojo.NotePic;
+import com.cat.entity.NotePic;
 
 public interface NotePicMapper {
     int deleteByPrimaryKey(Integer id);

@@ -1,6 +1,6 @@
 package com.cat.dao;
 
-import com.cat.pojo.ManCatRe;
+import com.cat.entity.ManCatRe;
 
 public interface ManCatReMapper {
     int deleteByPrimaryKey(Integer id);

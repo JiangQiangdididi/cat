@@ -1,6 +1,6 @@
 package com.cat.dao;
 
-import com.cat.pojo.CatNote;
+import com.cat.entity.CatNote;
 
 public interface CatNoteMapper {
     int deleteByPrimaryKey(Integer id);

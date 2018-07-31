@@ -2,7 +2,7 @@ package com.cat.service.impl;
 
 import com.cat.common.ServerResponse;
 import com.cat.dao.NoteMapper;
-import com.cat.pojo.Note;
+import com.cat.entity.Note;
 import com.cat.service.IDiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

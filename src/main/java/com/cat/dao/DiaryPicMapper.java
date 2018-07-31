@@ -1,6 +1,6 @@
 package com.cat.dao;
 
-import com.cat.pojo.DiaryPic;
+import com.cat.entity.DiaryPic;
 
 import java.util.List;
 

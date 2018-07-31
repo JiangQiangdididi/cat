@@ -1,6 +1,6 @@
 package com.cat.dao;
 
-import com.cat.pojo.Pic;
+import com.cat.entity.Pic;
 
 public interface PicMapper {
     int deleteByPrimaryKey(Integer id);

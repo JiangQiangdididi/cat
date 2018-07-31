@@ -1,9 +1,8 @@
 package com.cat.controller;
 
 import com.cat.common.ServerResponse;
-import com.cat.pojo.Diary;
+import com.cat.entity.Diary;
 import com.cat.service.IMainService;
-import com.cat.vo.CatVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

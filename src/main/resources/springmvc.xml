@@ -1,100 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- 加载sms.properties文件 -->
-    <context:property-placeholder location="classpath:*.properties" />
-
+     <context:property-placeholder location="classpath:dataSource.properties"/>
     <!-- 开启注解扫描 -->
-    <context:component-scan base-package="com.cat.controller,com.cat.handler" />
-
+    <context:component-scan base-package="com.cat.controller"/>
     <!-- mvc驱动. -->
-    <mvc:annotation-driven conversion-service="conversionService" />
+    <mvc:annotation-driven conversion-service="conversionService"/>
 
-    <!-- 视图解析器 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/" />
-        <property name="suffix" value=".jsp"/>
-    </bean>
-
-    <!-- 1.mvc:default   spring > 3.0 -->
-    <!--<mvc:default-servlet-handler />-->
-
-
-    <!--<mvc:resources mapping="/css/**" location="/css/" />
-    <mvc:resources mapping="/js/**" location="/js/" />
-    <mvc:resources mapping="/img/**" location="/img/" />
-    <mvc:resources mapping="/fonts/**" location="/fonts/" />-->
-
-
-
-
-    <!-- 1.将转换器类放到spring的转换器工厂中. -->
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" >
-        <!-- 注入String转换Date的转换器 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <bean class="com.cat.convert.String2DateConvert" />
+                <bean class="com.cat.convert.String2DateConvert"/>
             </set>
         </property>
     </bean>
 
-
-
-    <!-- 文件上传 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 要求文件不能超过5M   1024kb    1024b-->
-        <property name="maxUploadSize" value="5242880" />
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
-
-
-
-    <!-- 1. spring自带的异常处理器 -->
-    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        &lt;!&ndash; 注入信息. &ndash;&gt;
-        &lt;!&ndash; 1.当出现异常时,默认跳转的页面 &ndash;&gt;
-        <property name="defaultErrorView" value="error" />
-        &lt;!&ndash; 2.指定出现的异常信息的key. &ndash;&gt;
-        <property name="exceptionAttribute" value="ex" />
-        &lt;!&ndash; 3.针对一些异常,跳转到指定的页面
-            MaxUploadSizeExceededException
-         &ndash;&gt;
-        <property name="exceptionMappings">
-            <props>
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error1</prop>
-            </props>
-        </property>
-    </bean>-->
-
+       <!--文件上传-->
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="maxUploadSize" value="555555"/>
+  </bean>
 
     <!-- 配置拦截器 -->
     <mvc:interceptors>
-        <!-- 1.配置一个拦截器 -->
         <mvc:interceptor>
             <!-- 指定拦截哪些请求. -->
-            <mvc:mapping path="/**" />
+            <mvc:mapping path="/**"/>
             <!-- 指定哪些请求不拦截 -->
-            <mvc:exclude-mapping path="/page/user/**" />
-            <mvc:exclude-mapping path="/user/**" />
-            <!--<mvc:exclude-mapping path="/css/**" />-->
-            <!--<mvc:exclude-mapping path="/js/**" />-->
-            <!-- 使用哪个拦截器 -->
-            <bean class="com.cat.interceptor.MyInterceptor" />
+            <mvc:exclude-mapping path="/page/user/**"/>
+            <mvc:exclude-mapping path="/user/**"/>
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/js/**" />
+            <bean class="com.cat.interceptor.MyInterceptor"/>
         </mvc:interceptor>
+
     </mvc:interceptors>
-
-
-
-
-
-
-
-
-
 </beans>

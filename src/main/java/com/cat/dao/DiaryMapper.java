@@ -1,7 +1,6 @@
 package com.cat.dao;
 
-import com.cat.pojo.Diary;
-import org.apache.ibatis.annotations.Param;
+import com.cat.entity.Diary;
 
 /**
  * @Author: LR

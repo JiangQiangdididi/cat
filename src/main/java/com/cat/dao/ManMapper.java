@@ -1,6 +1,6 @@
 package com.cat.dao;
 
-import com.cat.pojo.Man;
+import com.cat.entity.Man;
 import org.apache.ibatis.annotations.Param;
 
 public interface ManMapper {

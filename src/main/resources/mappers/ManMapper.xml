@@ -1,155 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cat.dao.ManMapper" >
-  <resultMap id="BaseResultMap" type="com.cat.pojo.Man" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="gender" jdbcType="TINYINT" javaType="java.lang.Byte" />
-      <arg column="phone" jdbcType="CHAR" javaType="java.lang.String" />
-      <arg column="mail" jdbcType="CHAR" javaType="java.lang.String" />
-      <arg column="logname" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="buildtime" jdbcType="DATE" javaType="java.util.Date" />
-      <arg column="yn" jdbcType="TINYINT" javaType="java.lang.Byte" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, name, gender, phone, mail, logname, password, buildtime, yn
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from miao_man
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from miao_man
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.cat.pojo.Man" >
-    insert into miao_man (id, name, gender, 
-      phone, mail, logname, password, 
-      buildtime, yn)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
-      #{phone,jdbcType=CHAR}, #{mail,jdbcType=CHAR}, #{logname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{buildtime,jdbcType=DATE}, #{yn,jdbcType=TINYINT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.cat.pojo.Man" >
-    insert into miao_man
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="gender != null" >
-        gender,
-      </if>
-      <if test="phone != null" >
-        phone,
-      </if>
-      <if test="mail != null" >
-        mail,
-      </if>
-      <if test="logname != null" >
-        logname,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="buildtime != null" >
-        buildtime,
-      </if>
-      <if test="yn != null" >
-        yn,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null" >
-        #{gender,jdbcType=TINYINT},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=CHAR},
-      </if>
-      <if test="mail != null" >
-        #{mail,jdbcType=CHAR},
-      </if>
-      <if test="logname != null" >
-        #{logname,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="buildtime != null" >
-        #{buildtime,jdbcType=DATE},
-      </if>
-      <if test="yn != null" >
-        #{yn,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cat.pojo.Man" >
-    update miao_man
-    <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null" >
-        gender = #{gender,jdbcType=TINYINT},
-      </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=CHAR},
-      </if>
-      <if test="mail != null" >
-        mail = #{mail,jdbcType=CHAR},
-      </if>
-      <if test="logname != null" >
-        logname = #{logname,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="buildtime != null" >
-        buildtime = #{buildtime,jdbcType=DATE},
-      </if>
-      <if test="yn != null" >
-        yn = #{yn,jdbcType=TINYINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cat.pojo.Man" >
-    update miao_man
-    set name = #{name,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=TINYINT},
-      phone = #{phone,jdbcType=CHAR},
-      mail = #{mail,jdbcType=CHAR},
-      logname = #{logname,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      buildtime = #{buildtime,jdbcType=DATE},
-      yn = #{yn,jdbcType=TINYINT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cat.dao.ManMapper">
 
-  <select id="checkUsername" parameterType="string" resultType="int">
-    select count(1)
-    from miao_man
-    where logname = #{username}
-  </select>
+    <!--/**-->
+    <!--* 检查用户名是否存在-->
+    <!--* @param username-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int checkUsername(String username);-->
+    <select id="checkUsername" resultType="Integer">
+        select count(1) from miao_man where logname=#{logname}
+    </select>
 
-  <select id="selectLogin" parameterType="map" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from miao_man
-    where logname = #{username}
-    and password = #{password}
-  </select>
+
+    <select id="findAll" resultType="Integer">
+        select count(*) from miao_man
+    </select>
+    <!--/**-->
+    <!--* 注册信息-->
+    <!--* @param man-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int insertMan(Man man);-->
+
+    <insert id="insertMan" parameterType="Man">
+        insert into miao_man (logname,password,mail,buildtime)
+    values (#{logname},#{password},#{mail},now())
+    </insert>
+
+
+    <!--/**-->
+    <!--* 修改密码-->
+    <!--* @return-->
+    <!--*/-->
+    <!--Integer updatePassword();-->
+ <update id="updatePassword" parameterType="Man">
+     update miao_man set password=#{password} where mail=#{mail}
+ </update>
+
+
+
+    <!--/**-->
+    <!--* 添加个人信息-->
+    <!--* @param map-->
+    <!--* @return-->
+    <!--*/-->
+    <!--Integer addManInfo(Map map);-->
+<update id="updateManInfo" parameterType="Man">
+    update miao_man set
+    name=#{name},sex=#{sex},borntime=#{borntime},phone=#{phone},address=#{address}
+    where id=#{id}
+</update>
 </mapper>

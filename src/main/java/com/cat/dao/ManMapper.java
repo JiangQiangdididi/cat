@@ -1,22 +1,39 @@
 package com.cat.dao;
 
+
 import com.cat.entity.Man;
 import org.apache.ibatis.annotations.Param;
 
+
 public interface ManMapper {
-    int deleteByPrimaryKey(Integer id);
+    /**
+     * 检查用户名是否存在
+     * @param
+     * @return
+     */
+    int checkUsername(@Param("logname") String logname);
 
-    int insert(Man record);
 
-    int insertSelective(Man record);
+    /**
+     * 注册信息
+     * @param man
+     * @return
+     */
+    Integer insertMan(Man man);
 
-    Man selectByPrimaryKey(Integer id);
+    Integer findAll();
 
-    int updateByPrimaryKeySelective(Man record);
+    /**
+     * 修改密码
+     * @return
+     */
+    Integer updatePassword(Man man);
 
-    int updateByPrimaryKey(Man record);
 
-    int checkUsername(String username);
-
-    Man selectLogin(@Param("username") String username, @Param("password") String password);
+    /**
+     * 添加个人信息
+     * @param man
+     * @return
+     */
+    Integer updateManInfo(Man man);
 }

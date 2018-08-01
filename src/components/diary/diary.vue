@@ -1,20 +1,18 @@
 <template>
   <div class="publish">
-    <cat-tab></cat-tab>
-    <keep-alive>
-      <component v-bind:is="currentTab"></component>
-    </keep-alive>
+    <cat-tab :linkName="linkName"></cat-tab>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import catStory from './catStory/catStory'
-import findMaster from './findMaster/findMaster'
 import catTab from '../common/catTab/catTab'
 import { mapState } from 'vuex'
 export default {
   data () {
-    return {}
+    return {
+      linkName: 'diary'
+    }
   },
   computed: {
     ...mapState({
@@ -24,12 +22,7 @@ export default {
     })
   },
   components: {
-    'find-master': findMaster,
-    'cat-story': catStory,
     'cat-tab': catTab
-  },
-  created () {
-
   }
 }
 </script>

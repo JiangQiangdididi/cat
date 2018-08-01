@@ -1,5 +1,5 @@
 <template>
-  <div class="find-master">
+  <div class="publish-find-master">
     <!--头像-->
     <div class="user-photo">
       <img src="" alt="">
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .find-master
+  .publish-find-master
     padding-left 120px
     position relative
     .user-photo

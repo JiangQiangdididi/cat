@@ -15,8 +15,44 @@ const routes = [
     path: '/',
     component: resolve => require(['../views/layout.vue'], resolve ),
     children: [
-      { path: '/publish', component: publish },
-      { path: '/diary', component: diary },
+      {
+        path: '/publish',
+        component: publish,
+        redirect: '/publish/findMaster',
+        children: [
+          {
+            path: '/publish/findMaster',
+            component: resolve => require(['../components/publish/findMaster/findMaster.vue'], resolve )
+          },
+          {
+            path: '/publish/catStory',
+            component: resolve => require(['../components/publish/catStory/catStory.vue'], resolve )
+          }
+        ]
+      },
+      {
+        path: '/diary',
+        component: diary,
+        redirect: '/diary/findMaster',
+        children: [
+          {
+            path: '/diary/findMaster',
+            component: resolve => require(['../components/diary/findMaster/findMaster.vue'], resolve )
+          },
+          {
+            path: '/diary/catStory',
+            component: resolve => require(['../components/diary/catStory/catStory.vue'], resolve )
+          },
+          {
+            path: '/diary/findMaster/detail',
+            component: resolve => require(['../components/diary/findMasterDetail/findMasterDetail.vue'], resolve )
+          },
+          {
+            path: '/diary/catStory/detail',
+            component: resolve => require(['../components/diary/catStoryDetail/catStoryDetail.vue'], resolve )
+          }
+        ]
+      },
       {
         path: '/my',
         component: resolve => require(['../views/my/my-layout.vue'], resolve),

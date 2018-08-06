@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cat.dao.DiaryMapper">
+	<resultMap type="Diary" id="diaryResultMap">
+		<id column="id" property="id"/>
+		<result column="cat" property="cat"/>
+		<result column="man" property="man"/>
+		<result column="time" property="time"/>
+		<result column="title" property="title"/>
+		<result column="introduct" property="introduct"/>
+		<result column="content" property="content"/>
+	</resultMap>
+	
+	<sql id="column">
+		id,cat,man,time,title,introduct,content
+	</sql>
+	 <!--/**-->
+    <!--* 日志信息-->
+    <!--* @param diary-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int insertDiary(Diary diary);-->
+
+    <insert id="insertDiary" parameterType="Diary">
+        insert into miao_diary (<include refid="column"/>)
+    values (#{id},#{cat},#{man},now(),#{title},#{introduct},#{content})
+    </insert>
+    
+    <!--/**-->
+    <!--* 查询一个-->
+    <!--* @param id-->
+    <!--* @return-->
+    <!--*/-->
+    <!--Diary findDiary(String id);-->
+    <select id="findDiary" resultType="diaryResultMap" parameterType="Integer">
+        select <include refid="column"/> from miao_diary where id=#{id}
+    </select>
+	
+	<!--/**-->
+    <!--* 根据catId查询全部日志-->
+    <!--* @param catId-->
+    <!--* @return-->
+    <!--*/-->
+    <!--List<Diary> findByCatId();-->
+    <select id="findByCatId" resultType="diaryResultMap">
+        select <include refid="column"/> from miao_diary where cat=#{catId}
+    </select>
+
+    <!--/**-->
+    <!--* 更改信息-->
+    <!--* @param diary-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int updateDiary(Diary diary);-->
+	<update id="updateDiary" parameterType="Diary">
+	    update miao_diary set
+	    id=#{id},cat=#{cat},man=#{man},time=now(),title=#{title},introduct=#{introduct},content=#{content}
+	    where id=#{id}
+	</update>
+</mapper>

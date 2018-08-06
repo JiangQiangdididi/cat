@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cat.dao.DiaryPicMapper">
+	<resultMap type="DiaryPic" id="diaryPicResultMap">
+		<id column="id" property="id"/>
+		<result column="diary_id" property="diaryId"/>
+		<result column="pic_id" property="picId"/>
+		<result column="title" property="title"/>
+		<result column="introduct" property="introduct"/>
+		<result column="content" property="content"/>
+	</resultMap>
+	
+	<sql id="column">
+		id,diary_id,pic_id
+	</sql>
+	 <!--/**-->
+    <!--* 日志和图片关系-->
+    <!--* @param DiaryPic-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int insertDiaryPic(DiaryPic diaryPic);-->
+
+    <insert id="insertDiaryPic" parameterType="DiaryPic" >
+        insert into miao_diary_pic (<include refid="column"/>)
+    values (#{id},#{diaryId},#{picId})
+    </insert>
+    
+    <!--/**-->
+    <!--* 根据id删除关联-->
+    <!--* @param id-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int deleteOneById(Integer id);-->
+    
+   	<delete id="deleteOneById" parameterType="Integer">
+   		delete from miao_diary_pic where id=#{id}
+   	</delete>
+    
+    <!--/**-->
+    <!--* 查询一个-->
+    <!--* @param id-->
+    <!--* @return-->
+    <!--*/-->
+    <!--Diary findDiary(String id);-->
+    <!-- <select id="findDiary" resultType="diaryResultMap" parameterType="Integer">
+        select <include refid="column"/> from miao_diary where id=#{id}
+    </select> -->
+	
+	<!--/**-->
+    <!--* 查询全部-->
+    <!--* @param id-->
+    <!--* @return-->
+    <!--*/-->
+    <!--List<Diary> findAll();-->
+   <!--  <select id="findAll" resultType="diaryResultMap">
+        select <include refid="column"/> from miao_diary
+    </select> -->
+
+    <!--/**-->
+    <!--* 更改信息-->
+    <!--* @param diary-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int updateDiary(Diary diary);-->
+	<!-- <update id="updateDiary" parameterType="Diary">
+	    update miao_diary set
+	    id=#{id},man=#{man},time=now(),title=#{title},introduct=#{introduct},content=#{content}
+	    where id=#{id}
+	</update> -->
+</mapper>

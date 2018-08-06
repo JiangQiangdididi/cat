@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cat.dao.NotePicMapper">
+	<resultMap type="NotePic" id="notePicResultMap">
+		<id column="id" property="id"/>
+		<result column="note_id" property="noteId"/>
+		<result column="pic_id" property="picId"/>
+		<result column="title" property="title"/>
+		<result column="introduct" property="introduct"/>
+		<result column="content" property="content"/>
+	</resultMap>
+	
+	<sql id="column">
+		id,note_id,pic_id
+	</sql>
+	 <!--/**-->
+    <!--* 帖子和图片关系-->
+    <!--* @param NotePic-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int insertNotePic(NotePic notePic);-->
+
+    <insert id="insertNotePic" parameterType="NotePic" >
+        insert into miao_note_pic (<include refid="column"/>)
+    values (#{id},#{noteId},#{picId})
+    </insert>
+    
+    <!--/**-->
+    <!--* 根据id删除关联-->
+    <!--* @param id-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int deleteOneById(Integer id);-->
+    
+   	<delete id="deleteOneById" parameterType="Integer">
+   		delete from miao_note_pic where id=#{id}
+   	</delete>
+    
+    <!--/**-->
+    <!--* 查询一个-->
+    <!--* @param id-->
+    <!--* @return-->
+    <!--*/-->
+    <!--Note findNote(String id);-->
+    <!-- <select id="findNote" resultType="noteResultMap" parameterType="Integer">
+        select <include refid="column"/> from miao_note where id=#{id}
+    </select> -->
+	
+	<!--/**-->
+    <!--* 查询全部-->
+    <!--* @param id-->
+    <!--* @return-->
+    <!--*/-->
+    <!--List<Note> findAll();-->
+   <!--  <select id="findAll" resultType="noteResultMap">
+        select <include refid="column"/> from miao_note
+    </select> -->
+
+    <!--/**-->
+    <!--* 更改信息-->
+    <!--* @param note-->
+    <!--* @return-->
+    <!--*/-->
+    <!--int updateNote(Note note);-->
+	<!-- <update id="updateNote" parameterType="Note">
+	    update miao_note set
+	    id=#{id},man=#{man},time=now(),title=#{title},introduct=#{introduct},content=#{content}
+	    where id=#{id}
+	</update> -->
+</mapper>

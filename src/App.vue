@@ -27,7 +27,7 @@ export default {
   height: 100%;
 }
 .layout-content {
-  width: 1140px;
+  width: 1235px;
   padding: 30px 60px;
   margin: 0 auto;
   box-sizing: border-box;

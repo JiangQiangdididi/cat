@@ -5,10 +5,10 @@
         <img src="" alt="">
       </div>
       <nav>
-        <router-link to="/" exact>
+        <router-link to="/index" exact>
           首页
         </router-link>
-        <router-link to="/" exact>
+        <router-link to="/community" exact>
           社区
         </router-link>
         <router-link to="/diary" exact>
@@ -61,7 +61,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1140px;
+    width: 1285px;
     margin: 0 auto;
     background: transparent;
     flex:none;

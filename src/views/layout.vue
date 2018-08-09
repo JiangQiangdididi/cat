@@ -5,7 +5,8 @@
     <!--路由出口-->
     <div class="layout-content">
       <keep-alive>
-        <router-view/>
+        <router-view></router-view>o
+        
       </keep-alive>
     </div>
     <!--脚部-->

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import publishTab from './modules/publishTab'
-import diaryTab from './modules/diaryTab'
+import detailStore from './modules/detailStore'
 import citySelect from './modules/citySelect'
 
 Vue.use(Vuex)
@@ -16,8 +15,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    publishTab: publishTab,
-    diaryTab: diaryTab,
+    detailStore: detailStore,
     citySelect: citySelect
   }
 })

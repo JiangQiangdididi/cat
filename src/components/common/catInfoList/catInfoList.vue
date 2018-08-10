@@ -10,9 +10,9 @@
           <div class="info-text">
             {{item.content}}
           </div>
-          <button>查看全文&gt;</button>
+          <a @click="gotoDetail(item)" >查看全文&gt;</a>
         </div>
-        <img :src="item.photo" alt="">
+        <img :src="item.photo[0]" alt="">
       </div>
     </section>
     <p class="loading-alert" v-show="isLoading">正在加载，请稍候...</p>
@@ -21,23 +21,43 @@
 
 <script>
 export default {
+  props: ['parentStr'],
   data () {
     return {
       diaryList: [
         {
-          title: 'XXXXXXXXXXXX',
+          title: 'XXXXXX',
           content: '你个话痨小孩！说实话我觉得活泼张扬、清新单纯的你是还不错，就像肯德基柚香鸡腿堡，柚子酱搭配烤鸡腿，酸甜鲜嫩，另外你的约定我勉强答应了！#红黑双堡敢爱敢怼#今年夏天约上你的兄弟也一起来肯德基分享全新红黑双堡吧。',
           date: '2018-7-12 11:53',
-          photo: 'http://p2.ifengimg.com/fck/2016_44/0ee3cb8c9ddfc96_w1000_h1000.png'
+          photo: ['http://p2.ifengimg.com/fck/2016_44/0ee3cb8c9ddfc96_w1000_h1000.png'],
+          isAdopted: false,
+          articleState: {
+            collect: 15,
+            comment: 8,
+            like: 24
+          }
         },
         {
           title: 'XXXXXXXXXXXX',
           content: '你个话痨小孩！说实话我觉得活泼张扬、清新单纯的你是还不错，就像肯德基柚香鸡腿堡，柚子酱搭配烤鸡腿，酸甜鲜嫩，另外你的约定我勉强答应了！#红黑双堡敢爱敢怼#今年夏天约上你的兄弟也一起来肯德基分享全新红黑双堡吧。',
           date: '2018-7-12 11:53',
-          photo: 'http://p2.ifengimg.com/fck/2016_44/0ee3cb8c9ddfc96_w1000_h1000.png'
+          photo: ['http://p2.ifengimg.com/fck/2016_44/0ee3cb8c9ddfc96_w1000_h1000.png', 'http://p2.ifengimg.com/fck/2016_44/0ee3cb8c9ddfc96_w1000_h1000.png'],
+          isAdopted: true,
+          articleState: {
+            collect: 15,
+            comment: 8,
+            like: 24
+          }
         }
       ],
       isLoading: true
+    }
+  },
+  methods: {
+    gotoDetail (item) {
+      let pathStr = '/diary/' + this.$props.parentStr + '/detail'
+      this.$store.commit('changeItem', item)
+      this.$router.push({ path: pathStr }) // 跳转到详情页
     }
   }
 }
@@ -74,10 +94,12 @@ export default {
           position relative
           div.info-text
             text-indent 2em
-          button
+          a
             background transparent
             border none
+            cursor pointer
             color #fc8d59
+            display inline-block
             font-size 14px
             position absolute
             bottom 0

@@ -1,15 +1,20 @@
 <template>
-  <div class="cat-story">
+  <div class="diary-cat-story">
     <div class="pub-btn-wrap">
-      <router-link to="/publish" exact>发布</router-link>
+      <router-link to="/publish/catStory">发布</router-link>
     </div>
-    <cat-info-list></cat-info-list>
+    <cat-info-list :parentStr="parentStr"></cat-info-list>
   </div>
 </template>
 
 <script>
 import catInfoList from '../../common/catInfoList/catInfoList'
 export default {
+  data () {
+    return {
+      parentStr: 'catStory'
+    }
+  },
   components: {
     'cat-info-list': catInfoList
   }
@@ -17,7 +22,7 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .cat-story
+  .diary-cat-story
     div.pub-btn-wrap
       margin-bottom 15px
       text-align center

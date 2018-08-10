@@ -1,6 +1,6 @@
 export default {
   state: {
-    currentTab: 'find-master'
+    currentTab: 'findMaster'
   },
   mutations: {
     changeItem (state, val) {

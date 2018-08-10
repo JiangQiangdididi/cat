@@ -1,5 +1,5 @@
 <template>
-  <div class="cat-story">
+  <div class="publish-cat-story">
     <!--头像-->
     <div class="user-photo">
       <img src="" alt="">
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  .cat-story
+  .publish-cat-story
     padding-left 120px
     position relative
     .user-photo

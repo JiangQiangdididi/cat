@@ -5,6 +5,8 @@ import com.cat.common.ResponseCode;
 import com.cat.common.ServerResponse;
 import com.cat.pojo.Cat;
 import com.cat.pojo.Man;
+import com.cat.pojo.Note;
+import com.cat.service.INoteService;
 import com.cat.service.IUserService;
 import com.cat.vo.CatVo;
 import com.github.pagehelper.PageInfo;
@@ -30,6 +32,9 @@ public class UserController {
 
     @Autowired
     private IUserService iUserService;
+
+    @Autowired
+    private INoteService iNoteService;
 
     /**
      * 用户登录
@@ -96,5 +101,14 @@ public class UserController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
         return iUserService.getCatNote(man.getId(), pageNum, pageSize);
+    }
+    @RequestMapping("note_detail.do")
+    @ResponseBody
+    public ServerResponse<Note> getNoteDetail(Integer noteId, HttpSession session){
+        Man man = (Man) session.getAttribute(Const.CURRENT_USER);
+        if (man == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iNoteService.getDetail(noteId);
     }
 }

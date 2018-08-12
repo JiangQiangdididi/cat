@@ -20,8 +20,6 @@ public interface NoteMapper {
 
     int updateByPrimaryKey(Note record);
 
-    Note selectByIdAndUserName(@Param("userId") Integer userId, @Param("username") String username);
-
     List<Note> selectNoteByManId(@Param("manId") Integer manId);
 
 }

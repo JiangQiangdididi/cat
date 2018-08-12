@@ -1,6 +1,7 @@
 package com.cat.service;
 
 import com.cat.common.ServerResponse;
+import com.cat.pojo.Note;
 
 /**
  * @Author: LR
@@ -8,7 +9,7 @@ import com.cat.common.ServerResponse;
  * @Date: Created in 9:25 2018/7/17
  * @Modified By:
  **/
-public interface IDiaryService {
+public interface INoteService {
 
-    ServerResponse getDetail(Integer userId, String username);
+    ServerResponse<Note> getDetail(Integer noteId);
 }

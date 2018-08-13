@@ -59,6 +59,7 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccess("登录成功", man);
     }
 
+    // 封装猫列表
     private CatListVo assembleCatListVo(Cat cat){
         CatListVo catVoList = new CatListVo();
         catVoList.setName(cat.getName());

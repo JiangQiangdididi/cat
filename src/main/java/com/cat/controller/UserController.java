@@ -6,6 +6,7 @@ import com.cat.common.ServerResponse;
 import com.cat.pojo.Cat;
 import com.cat.pojo.Man;
 import com.cat.pojo.Note;
+import com.cat.pojo.Praise;
 import com.cat.service.INoteService;
 import com.cat.service.IUserService;
 import com.cat.vo.CatVo;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * @Author: LR
@@ -35,6 +37,7 @@ public class UserController {
 
     @Autowired
     private INoteService iNoteService;
+
 
     /**
      * 用户登录
@@ -110,5 +113,51 @@ public class UserController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
         return iNoteService.getDetail(noteId);
+    }
+
+
+    // 处理用户点赞行为
+    @RequestMapping("praise.do")
+    @ResponseBody
+    public ServerResponse getPraise(HttpSession session, Integer id){
+        Man man = (Man) session.getAttribute(Const.CURRENT_USER);
+        if (man == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
+        }
+        System.out.println("点赞模块:" + id);
+        // 查询是否有该用户的点赞记录
+        Praise praise = iNoteService.findPraise(id);
+        if (praise != null) {
+            System.out.println("有点赞记录");
+            // 如果有点赞记录， 则删除该记录 同时日记点赞数-1
+            // 删除记录
+            iNoteService.deletePraise(id);
+
+            // 根据点赞id 找到文章
+            ServerResponse<Note> note = iNoteService.findNote(id);
+            Note note1 = note.getData();
+            // 文章数-1
+            note1.setPraiseNum(note1.getPraiseNum()-1);
+            // 更新文章点赞数
+            iNoteService.updatePraiseNum(note1);
+            return ServerResponse.createBySuccess("点赞-1");
+        }else{
+            // 如果没有这条点赞数则增加这条记录。 同时文章数+1
+            System.out.println("没有记录");
+            // 根据点赞id 找到文章
+            ServerResponse<Note> note = iNoteService.findNote(id);
+            Note note1 = note.getData();
+            // 添加记录
+            Praise praise1 = new Praise();
+            praise1.setManId(man.getId());
+            praise1.setContentId(note1.getId());
+            iNoteService.addPraise(praise1);
+
+            // 文章数+1
+            note1.setPraiseNum(note1.getPraiseNum()+1);
+            // 更新文章点赞数
+            iNoteService.updatePraiseNum(note1);
+        }
+        return ServerResponse.createBySuccess(praise);
     }
 }

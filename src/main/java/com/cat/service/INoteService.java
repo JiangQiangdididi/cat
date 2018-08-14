@@ -1,7 +1,9 @@
 package com.cat.service;
 
 import com.cat.common.ServerResponse;
+import com.cat.pojo.Man;
 import com.cat.pojo.Note;
+import com.cat.pojo.Praise;
 
 /**
  * @Author: LR
@@ -12,4 +14,14 @@ import com.cat.pojo.Note;
 public interface INoteService {
 
     ServerResponse<Note> getDetail(Integer noteId);
+
+    ServerResponse<Note> findNote(Integer id);
+
+    Praise findPraise(Integer id);
+
+    ServerResponse<String> deletePraise(Integer id);
+
+    ServerResponse updatePraiseNum(Note note);
+
+    ServerResponse addPraise(Praise praise);
 }

@@ -1,6 +1,8 @@
 package com.cat.service;
 
 import com.cat.common.ServerResponse;
+import com.cat.pojo.Note;
+import com.cat.pojo.Praise;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -18,4 +20,6 @@ public interface IUserService {
     ServerResponse<PageInfo> getCatList(Integer manId, int pageNum, int pageSize);
 
     ServerResponse<PageInfo> getCatNote(Integer manId, int pageNum, int pageSize);
+
+
 }

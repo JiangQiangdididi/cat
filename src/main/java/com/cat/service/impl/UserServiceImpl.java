@@ -4,9 +4,11 @@ import com.cat.common.ServerResponse;
 import com.cat.dao.CatMapper;
 import com.cat.dao.ManMapper;
 import com.cat.dao.NoteMapper;
+import com.cat.dao.PraiseMapper;
 import com.cat.pojo.Cat;
 import com.cat.pojo.Man;
 import com.cat.pojo.Note;
+import com.cat.pojo.Praise;
 import com.cat.service.IUserService;
 import com.cat.utils.MD5Util;
 import com.cat.vo.CatListVo;
@@ -37,6 +39,8 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private NoteMapper noteMapper;
+
+
 
 
 
@@ -106,4 +110,6 @@ public class UserServiceImpl implements IUserService {
         PageInfo pageInfo =new PageInfo(noteList);
         return ServerResponse.createBySuccess(pageInfo);
     }
+
+
 }
